@@ -1,0 +1,83 @@
+version: '3.9'
+
+volumes:
+  postgres_data:
+  redis_data:
+  staticfiles:
+
+networks:
+  simulados_net:
+    driver: bridge
+
+services:
+
+  db:
+    image: postgres:16-alpine
+    restart: always
+    environment:
+      POSTGRES_DB:       ${POSTGRES_DB}
+      POSTGRES_USER:     ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - simulados_net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"]
+      interval: 10s
+      retries:  5
+
+  redis:
+    image: redis:7-alpine
+    restart: always
+    volumes:
+      - redis_data:/data
+    networks:
+      - simulados_net
+
+  backend:
+    image: ghcr.io/${GITHUB_REPOSITORY}/backend:latest
+    restart: always
+    env_file: .env.prod
+    volumes:
+      - staticfiles:/app/staticfiles
+    networks:
+      - simulados_net
+    depends_on:
+      db:
+        condition: service_healthy
+    command: >
+      sh -c "python manage.py migrate --settings=simulados.settings.production &&
+             python manage.py seed_simulados &&
+             gunicorn simulados.wsgi:application --bind 0.0.0.0:8000 --workers 3"
+
+  celery:
+    image: ghcr.io/${GITHUB_REPOSITORY}/backend:latest
+    restart: always
+    env_file: .env.prod
+    networks:
+      - simulados_net
+    depends_on: [backend, redis]
+    command: celery -A simulados worker --loglevel=warning --concurrency=2
+
+  frontend:
+    image: ghcr.io/${GITHUB_REPOSITORY}/frontend:latest
+    restart: always
+    environment:
+      NEXT_PUBLIC_API_URL: https://api.simulaai.com.br/api
+    networks:
+      - simulados_net
+
+  nginx:
+    image: nginx:alpine
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.prod.conf:/etc/nginx/nginx.conf:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+      - staticfiles:/app/staticfiles:ro
+    networks:
+      - simulados_net
+    depends_on: [backend, frontend]

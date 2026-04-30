@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ═══ SEO PRIMARY ═══ -->
+  <title>SimulaAí — Plataforma de Simulados Online para Concursos e Vestibulares</title>
+  <meta name="description" content="Estude com simulados inteligentes, acompanhe seu desempenho em tempo real e conquiste sua aprovação. Mais de 3.000 questões comentadas. Grátis para começar." />
+  <meta name="keywords" content="simulados online, concursos públicos, vestibular, ENEM, questões comentadas, plataforma de estudos, preparação para provas" />
+  <meta name="author" content="SimulaAí" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://simulaai.com.br/" />
+
+  <!-- ═══ OPEN GRAPH (WhatsApp, Facebook, LinkedIn) ═══ -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://simulaai.com.br/" />
+  <meta property="og:title"       content="SimulaAí — Simulados que aprovam" />
+  <meta property="og:description" content="Pratique com questões reais, receba feedback imediato e veja sua evolução dia a dia. A plataforma feita para quem estuda de verdade." />
+  <meta property="og:image"       content="https://simulaai.com.br/og-image.png" />
+
+  <!-- ═══ TWITTER CARD ═══ -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="SimulaAí — Simulados que aprovam" />
+  <meta name="twitter:description" content="Mais de 3.000 questões comentadas. Timer, ranking e histórico. Grátis para começar." />
+  <meta name="twitter:image"       content="https://simulaai.com.br/og-image.png" />
+
+  <!-- ═══ STRUCTURED DATA (Schema.org) ═══ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "SimulaAí",
+    "applicationCategory": "EducationApplication",
+    "description": "Plataforma de simulados online para concursos e vestibulares",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "BRL" },
+    "operatingSystem": "Web, iOS, Android"
+  }
+  </script>
+
+  <!-- ═══ FONTS ═══ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ═══ TOKENS ═══ */
+    :root {
+      --ink:      #0a0a0a;
+      --paper:    #f5f0e8;
+      --cream:    #ede8da;
+      --gold:     #c8922a;
+      --gold-lt:  #e8b84b;
+      --rust:     #b84c27;
+      --sage:     #3d5a47;
+      --off:      #6b6455;
+      --radius:   4px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Syne', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ═══ NAV ═══ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 6vw;
+      background: rgba(245,240,232,.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(0,0,0,.06);
+    }
+
+    .nav-logo {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.5rem;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-logo em { color: var(--gold); font-style: italic; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: .85rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--off);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover { color: var(--ink); }
+
+    .btn-nav {
+      background: var(--ink);
+      color: var(--paper) !important;
+      padding: 9px 22px;
+      border-radius: var(--radius);
+      font-size: .82rem !important;
+    }
+
+    .btn-nav:hover { background: var(--gold) !important; color: var(--ink) !important; }
+
+    /* ═══ HERO ═══ */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 120px 6vw 80px;
+      gap: 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* diagonal tape decoration */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%; right: -10%;
+      width: 55%;
+      height: 130%;
+      background: var(--cream);
+      transform: skewX(-6deg);
+      z-index: 0;
+    }
+
+    .hero-content { position: relative; z-index: 1; }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'DM Mono', monospace;
+      font-size: .75rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(200,146,42,.1);
+      border: 1px solid rgba(200,146,42,.25);
+      border-radius: 2px;
+      padding: 5px 12px;
+      margin-bottom: 24px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: pulse 2s ease infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: .4; transform: scale(.8); }
+    }
+
+    h1 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2.8rem, 5.5vw, 4.8rem);
+      line-height: 1.05;
+      letter-spacing: -.02em;
+      margin-bottom: 24px;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: var(--off);
+      max-width: 460px;
+      margin-bottom: 40px;
+      font-weight: 400;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--ink);
+      color: var(--paper);
+      padding: 16px 32px;
+      border-radius: var(--radius);
+      font-family: 'Syne', sans-serif;
+      font-size: .9rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all .25s;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold);
+      color: var(--ink);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(200,146,42,.3);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--ink);
+      padding: 16px 28px;
+      border: 1.5px solid var(--ink);
+      border-radius: var(--radius);
+      font-family: 'Syne', sans-serif;
+      font-size: .9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all .25s;
+    }
+
+    .btn-secondary:hover {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    /* hero stats strip */
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(0,0,0,.1);
+    }
+
+    .stat-item {}
+    .stat-num {
+      font-family: 'Instrument Serif', serif;
+      font-size: 2rem;
+      color: var(--ink);
+      display: block;
+    }
+    .stat-label {
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--off);
+    }
+
+    /* hero visual */
+    .hero-visual {
+      position: relative;
+      z-index: 1;
+    }
+
+    .mock-card {
+      background: var(--ink);
+      color: var(--paper);
+      border-radius: 12px;
+      padding: 32px;
+      box-shadow: 20px 20px 0 var(--gold);
+      max-width: 420px;
+      margin-left: auto;
+    }
+
+    .mock-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .mock-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.1rem;
+    }
+
+    .mock-timer {
+      font-family: 'DM Mono', monospace;
+      font-size: .85rem;
+      color: var(--gold-lt);
+      background: rgba(255,255,255,.08);
+      padding: 5px 10px;
+      border-radius: 4px;
+    }
+
+    .mock-question {
+      font-size: .95rem;
+      line-height: 1.6;
+      color: rgba(245,240,232,.8);
+      margin-bottom: 20px;
+    }
+
+    .mock-option {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 14px;
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,.1);
+      margin-bottom: 8px;
+      font-size: .88rem;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .mock-option.correct {
+      border-color: #34d399;
+      background: rgba(52,211,153,.12);
+      color: #34d399;
+    }
+
+    .mock-option.wrong {
+      border-color: rgba(248,113,113,.5);
+      background: rgba(248,113,113,.08);
+      color: rgba(248,113,113,.8);
+    }
+
+    .mock-letter {
+      width: 24px; height: 24px;
+      border-radius: 4px;
+      background: rgba(255,255,255,.08);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .75rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .mock-option.correct .mock-letter { background: #34d399; color: #0a0a0a; }
+    .mock-option.wrong   .mock-letter { background: rgba(248,113,113,.3); }
+
+    .mock-progress {
+      margin-top: 20px;
+      height: 3px;
+      background: rgba(255,255,255,.1);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .mock-progress-fill {
+      height: 100%;
+      width: 65%;
+      background: var(--gold-lt);
+      border-radius: 999px;
+    }
+
+    /* floating badge */
+    .float-badge {
+      position: absolute;
+      bottom: -20px;
+      left: -20px;
+      background: var(--sage);
+      color: #fff;
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-size: .82rem;
+      font-weight: 600;
+      box-shadow: 0 8px 24px rgba(0,0,0,.2);
+    }
+
+    .float-badge strong {
+      display: block;
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.4rem;
+      line-height: 1;
+      margin-bottom: 2px;
+    }
+
+    /* ═══ FEATURES ═══ */
+    .features {
+      padding: 100px 6vw;
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: .72rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--gold-lt);
+      margin-bottom: 16px;
+    }
+
+    .features h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.1;
+      margin-bottom: 60px;
+      max-width: 520px;
+    }
+
+    .features h2 em { font-style: italic; color: var(--gold-lt); }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .feat-item {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.07);
+      padding: 36px 30px;
+      transition: .25s;
+    }
+
+    .feat-item:hover {
+      background: rgba(255,255,255,.08);
+      border-color: rgba(200,146,42,.3);
+    }
+
+    .feat-icon {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .feat-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--paper);
+    }
+
+    .feat-desc {
+      font-size: .88rem;
+      line-height: 1.7;
+      color: rgba(245,240,232,.55);
+      font-weight: 400;
+    }
+
+    /* ═══ HOW IT WORKS ═══ */
+    .how {
+      padding: 100px 6vw;
+      background: var(--cream);
+    }
+
+    .how-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .how h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 60px;
+      text-align: center;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+    }
+
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: 10%;
+      right: 10%;
+      height: 1px;
+      background: repeating-linear-gradient(
+        90deg, var(--gold) 0, var(--gold) 6px, transparent 6px, transparent 14px
+      );
+    }
+
+    .step {
+      text-align: center;
+      padding: 0 16px;
+    }
+
+    .step-num {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: var(--paper);
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.3rem;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+      position: relative;
+      z-index: 1;
+      border: 3px solid var(--paper);
+      box-shadow: 0 0 0 2px var(--gold);
+    }
+
+    .step-title {
+      font-size: .95rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .step-desc {
+      font-size: .82rem;
+      line-height: 1.6;
+      color: var(--off);
+      font-weight: 400;
+    }
+
+    /* ═══ TESTIMONIALS ═══ */
+    .testimonials {
+      padding: 100px 6vw;
+      background: var(--paper);
+      overflow: hidden;
+    }
+
+    .testimonials h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 48px;
+      text-align: center;
+    }
+
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .testi-card {
+      background: var(--cream);
+      border-radius: 8px;
+      padding: 28px;
+      border: 1px solid rgba(0,0,0,.06);
+      position: relative;
+    }
+
+    .testi-card::before {
+      content: '"';
+      font-family: 'Instrument Serif', serif;
+      font-size: 5rem;
+      color: var(--gold);
+      opacity: .25;
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      line-height: 1;
+    }
+
+    .testi-text {
+      font-size: .92rem;
+      line-height: 1.75;
+      color: var(--off);
+      margin-bottom: 20px;
+      font-weight: 400;
+    }
+
+    .testi-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .testi-avatar {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: var(--paper);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700;
+      font-size: .85rem;
+    }
+
+    .testi-name { font-size: .88rem; font-weight: 700; }
+    .testi-role { font-size: .78rem; color: var(--off); }
+
+    /* ═══ PRICING ═══ */
+    .pricing {
+      padding: 100px 6vw;
+      background: var(--cream);
+    }
+
+    .pricing h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .price-card {
+      background: var(--paper);
+      border: 1.5px solid rgba(0,0,0,.1);
+      border-radius: 8px;
+      padding: 36px 28px;
+      transition: .25s;
+    }
+
+    .price-card.featured {
+      background: var(--ink);
+      color: var(--paper);
+      border-color: var(--ink);
+      transform: scale(1.04);
+      box-shadow: 0 20px 60px rgba(0,0,0,.25);
+    }
+
+    .price-card:hover { transform: translateY(-4px); }
+    .price-card.featured:hover { transform: scale(1.04) translateY(-4px); }
+
+    .price-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--ink);
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 2px;
+      margin-bottom: 16px;
+    }
+
+    .price-plan {
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--off);
+      margin-bottom: 8px;
+    }
+
+    .price-card.featured .price-plan { color: rgba(245,240,232,.6); }
+
+    .price-val {
+      font-family: 'Instrument Serif', serif;
+      font-size: 2.8rem;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .price-period {
+      font-size: .8rem;
+      color: var(--off);
+      margin-bottom: 28px;
+    }
+
+    .price-card.featured .price-period { color: rgba(245,240,232,.55); }
+
+    .price-features {
+      list-style: none;
+      margin-bottom: 28px;
+    }
+
+    .price-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: .88rem;
+      font-weight: 400;
+      line-height: 1.5;
+      margin-bottom: 10px;
+      color: var(--off);
+    }
+
+    .price-card.featured .price-features li { color: rgba(245,240,232,.75); }
+
+    .price-features li::before {
+      content: '✓';
+      color: var(--sage);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .price-card.featured .price-features li::before { color: var(--gold-lt); }
+
+    .btn-price {
+      display: block;
+      text-align: center;
+      padding: 13px;
+      border-radius: var(--radius);
+      font-family: 'Syne', sans-serif;
+      font-size: .85rem;
+      font-weight: 700;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: .2s;
+      border: 1.5px solid var(--ink);
+      color: var(--ink);
+    }
+
+    .price-card.featured .btn-price {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--ink);
+    }
+
+    .btn-price:hover { background: var(--ink); color: var(--paper); }
+    .price-card.featured .btn-price:hover { background: var(--gold-lt); border-color: var(--gold-lt); }
+
+    /* ═══ CTA BANNER ═══ */
+    .cta-banner {
+      padding: 100px 6vw;
+      background: var(--rust);
+      color: var(--paper);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-banner::before {
+      content: 'APROVA';
+      position: absolute;
+      font-family: 'Instrument Serif', serif;
+      font-size: 18vw;
+      font-style: italic;
+      color: rgba(255,255,255,.06);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .cta-banner h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: 1.1;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .cta-banner p {
+      font-size: 1.05rem;
+      opacity: .8;
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--paper);
+      color: var(--ink);
+      padding: 18px 40px;
+      border-radius: var(--radius);
+      font-family: 'Syne', sans-serif;
+      font-size: .95rem;
+      font-weight: 800;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: .25s;
+      position: relative;
+    }
+
+    .btn-cta:hover {
+      background: var(--gold-lt);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 36px rgba(0,0,0,.3);
+    }
+
+    /* ═══ FOOTER ═══ */
+    footer {
+      padding: 48px 6vw;
+      background: var(--ink);
+      color: rgba(245,240,232,.5);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-logo {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.3rem;
+      color: var(--paper);
+      text-decoration: none;
+    }
+
+    .footer-logo em { color: var(--gold); font-style: italic; }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: .8rem;
+      color: rgba(245,240,232,.45);
+      text-decoration: none;
+      transition: .2s;
+    }
+
+    .footer-links a:hover { color: var(--paper); }
+
+    .footer-copy {
+      font-size: .78rem;
+    }
+
+    /* ═══ ANIMATIONS ═══ */
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    [data-reveal].revealed {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ═══ MOBILE ═══ */
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; padding: 100px 6vw 60px; }
+      .hero::before { display: none; }
+      .hero-visual { display: none; }
+      .features-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+      .steps::before { display: none; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .price-card.featured { transform: none; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="/" class="nav-logo">Simula<em>Aí</em></a>
+    <ul class="nav-links">
+      <li><a href="#funcionalidades">Funcionalidades</a></li>
+      <li><a href="#como-funciona">Como funciona</a></li>
+      <li><a href="#precos">Preços</a></li>
+      <li><a href="/app/login">Entrar</a></li>
+      <li><a href="/app/register" class="btn-nav">Começar grátis</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content" data-reveal>
+      <div class="hero-eyebrow">Plataforma de estudos inteligente</div>
+      <h1>Simulados que<br /><em>realmente</em><br />aprovam.</h1>
+      <p class="hero-sub">
+        Pratique com questões reais, receba feedback imediato e acompanhe sua evolução. 
+        Tudo que você precisa para conquistar sua vaga — num só lugar.
+      </p>
+      <div class="hero-cta">
+        <a href="/app/register" class="btn-primary">
+          Começar grátis →
+        </a>
+        <a href="#como-funciona" class="btn-secondary">
+          Como funciona
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-num">3.200+</span>
+          <span class="stat-label">Questões</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">98%</span>
+          <span class="stat-label">Satisfação</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">12k</span>
+          <span class="stat-label">Aprovados</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual" data-reveal>
+      <div class="mock-card">
+        <div class="mock-header">
+          <div class="mock-title">Direito Constitucional</div>
+          <div class="mock-timer">⏱ 18:42</div>
+        </div>
+        <p class="mock-question">
+          São direitos sociais, na forma da Constituição Federal de 1988, exceto:
+        </p>
+        <div class="mock-option wrong">
+          <div class="mock-letter">A</div>
+          A educação e a saúde
+        </div>
+        <div class="mock-option correct">
+          <div class="mock-letter">B</div>
+          O direito ao voto secreto ✓
+        </div>
+        <div class="mock-option">
+          <div class="mock-letter">C</div>
+          O lazer e a segurança
+        </div>
+        <div class="mock-option">
+          <div class="mock-letter">D</div>
+          A moradia e o trabalho
+        </div>
+        <div class="mock-progress">
+          <div class="mock-progress-fill"></div>
+        </div>
+      </div>
+      <div class="float-badge">
+        <strong>87%</strong>
+        desempenho hoje
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features" id="funcionalidades">
+    <div class="section-label">Por que o SimulaAí</div>
+    <h2>Tudo que você precisa<br /><em>numa só plataforma</em></h2>
+    <div class="features-grid">
+      <div class="feat-item" data-reveal>
+        <span class="feat-icon">⏱️</span>
+        <div class="feat-title">Timer inteligente</div>
+        <p class="feat-desc">Simule as condições reais da prova com cronômetro regressivo e alertas visuais quando o tempo está acabando.</p>
+      </div>
+      <div class="feat-item" data-reveal>
+        <span class="feat-icon">💡</span>
+        <div class="feat-title">Gabarito comentado</div>
+        <p class="feat-desc">Cada questão tem explicação detalhada. Aprenda com os erros e entenda o raciocínio correto.</p>
+      </div>
+      <div class="feat-item" data-reveal>
+        <span class="feat-icon">📊</span>
+        <div class="feat-title">Análise de desempenho</div>
+        <p class="feat-desc">Veja sua evolução ao longo do tempo, identifique seus pontos fracos e foque onde mais importa.</p>
+      </div>
+      <div class="feat-item" data-reveal>
+        <span class="feat-icon">🏆</span>
+        <div class="feat-title">Ranking em tempo real</div>
+        <p class="feat-desc">Compare seu desempenho com outros candidatos e mantenha-se motivado com a competição saudável.</p>
+      </div>
+      <div class="feat-item" data-reveal>
+        <span class="feat-icon">📱</span>
+        <div class="feat-title">App mobile nativo</div>
+        <p class="feat-desc">Estude offline no ônibus, no intervalo, em qualquer lugar. Sincroniza automaticamente quando você conectar.</p>
+      </div>
+      <div class="feat-item" data-reveal>
+        <span class="feat-icon">🎯</span>
+        <div class="feat-title">Simulados por banca</div>
+        <p class="feat-desc">Questões organizadas por banca examinadora, cargo, disciplina e nível de dificuldade.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how" id="como-funciona">
+    <div class="how-inner">
+      <div class="section-label" style="text-align:center">Simples assim</div>
+      <h2>Como funciona</h2>
+      <div class="steps">
+        <div class="step" data-reveal>
+          <div class="step-num">1</div>
+          <div class="step-title">Crie sua conta</div>
+          <p class="step-desc">Cadastro gratuito em menos de 1 minuto. Sem cartão de crédito.</p>
+        </div>
+        <div class="step" data-reveal>
+          <div class="step-num">2</div>
+          <div class="step-title">Escolha o simulado</div>
+          <p class="step-desc">Filtre por concurso, disciplina ou banca examinadora.</p>
+        </div>
+        <div class="step" data-reveal>
+          <div class="step-num">3</div>
+          <div class="step-title">Responda as questões</div>
+          <p class="step-desc">Com timer e condições reais de prova. No celular ou PC.</p>
+        </div>
+        <div class="step" data-reveal>
+          <div class="step-num">4</div>
+          <div class="step-title">Evolua todo dia</div>
+          <p class="step-desc">Veja seu resultado, leia os comentários e programe a próxima sessão.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="section-label" style="text-align:center">Quem já usou</div>
+    <h2>Histórias reais de aprovação</h2>
+    <div class="testi-grid">
+      <div class="testi-card" data-reveal>
+        <p class="testi-text">Em 4 meses usando o SimulaAí diariamente passei no concurso da Receita Federal. Os comentários das questões fazem toda a diferença.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">M</div>
+          <div>
+            <div class="testi-name">Mariana Costa</div>
+            <div class="testi-role">Aprovada — Receita Federal 2024</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card" data-reveal>
+        <p class="testi-text">O app offline foi decisivo. Estudava no trajeto pro trabalho sem gastar dados. Passei no TRT em 6 meses.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">R</div>
+          <div>
+            <div class="testi-name">Rafael Mendes</div>
+            <div class="testi-role">Aprovado — TRT-SP 2024</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card" data-reveal>
+        <p class="testi-text">Tentei outros sites mas o SimulaAí é diferente. Interface limpa, questões atualizadas e o ranking me mantém motivada.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">J</div>
+          <div>
+            <div class="testi-name">Juliana Ferreira</div>
+            <div class="testi-role">Aprovada — INSS 2023</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing" id="precos">
+    <div class="section-label" style="text-align:center">Planos</div>
+    <h2>Simples e transparente</h2>
+    <div class="pricing-grid">
+      <div class="price-card" data-reveal>
+        <div class="price-plan">Grátis</div>
+        <div class="price-val">R$ 0</div>
+        <div class="price-period">para sempre</div>
+        <ul class="price-features">
+          <li>5 simulados por mês</li>
+          <li>Gabarito comentado básico</li>
+          <li>Histórico dos últimos 30 dias</li>
+          <li>Acesso ao ranking geral</li>
+        </ul>
+        <a href="/app/register" class="btn-price">Criar conta grátis</a>
+      </div>
+
+      <div class="price-card featured" data-reveal>
+        <div class="price-badge">Mais popular</div>
+        <div class="price-plan">Pro</div>
+        <div class="price-val">R$ 29</div>
+        <div class="price-period">por mês</div>
+        <ul class="price-features">
+          <li>Simulados ilimitados</li>
+          <li>Gabarito comentado completo</li>
+          <li>Análise detalhada por disciplina</li>
+          <li>App mobile offline</li>
+          <li>Ranking por banca e cargo</li>
+          <li>Suporte prioritário</li>
+        </ul>
+        <a href="/app/register" class="btn-price">Assinar Pro</a>
+      </div>
+
+      <div class="price-card" data-reveal>
+        <div class="price-plan">Turma</div>
+        <div class="price-val">R$ 19</div>
+        <div class="price-period">por aluno/mês (mín. 10)</div>
+        <ul class="price-features">
+          <li>Tudo do Pro</li>
+          <li>Painel do professor</li>
+          <li>Relatórios por turma</li>
+          <li>Simulados personalizados</li>
+          <li>Onboarding dedicado</li>
+        </ul>
+        <a href="mailto:contato@simulaai.com.br" class="btn-price">Falar com vendas</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner">
+    <h2>Sua aprovação começa<br />com um simulado.</h2>
+    <p>Junte-se a mais de 12.000 aprovados. Grátis para começar.</p>
+    <a href="/app/register" class="btn-cta">
+      Começar agora — é grátis →
+    </a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="/" class="footer-logo">Simula<em>Aí</em></a>
+    <ul class="footer-links">
+      <li><a href="/privacidade">Privacidade</a></li>
+      <li><a href="/termos">Termos de uso</a></li>
+      <li><a href="/contato">Contato</a></li>
+      <li><a href="https://github.com/seu-usuario/simulados-app">GitHub</a></li>
+    </ul>
+    <div class="footer-copy">© 2025 SimulaAí. Todos os direitos reservados.</div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('revealed'), i * 80);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: .12 });
+
+    document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
