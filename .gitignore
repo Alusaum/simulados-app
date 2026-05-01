@@ -1,2 +1,23 @@
-node_modules/
+# Python
+venv/
+__pycache__/
+*.pyc
+db.sqlite3
 backend/data/
+
+# Node / Next.js
+node_modules/
+.next/
+frontend/.env
+frontend/.env.local
+
+# Flutter
+mobile/build/
+mobile/.dart_tool/
+
+# VS Code
+.vscode/
+
+# Outros
+.DS_Store
+*.env
